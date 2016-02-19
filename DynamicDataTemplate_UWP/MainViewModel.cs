@@ -27,9 +27,10 @@ namespace DynamicDataTemplate_UWP
         {
             if (item is Models.ModelA)
                 return ModelATemplate;
-            else if (item is Models.ModelB)
+            if (item is Models.ModelB)
                 return ModelBTemplate;
-            else return base.SelectTemplate(item, container);
+
+            return base.SelectTemplate(item, container);
         }
     }
 
