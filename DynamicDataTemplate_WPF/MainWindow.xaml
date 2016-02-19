@@ -1,0 +1,41 @@
+﻿<Window x:Class="DynamicDataTemplate_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:DynamicDataTemplate_WPF"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:model="clr-namespace:DynamicDataTemplate_WPF.Models"
+        Title="MainWindow"
+        Width="525"
+        Height="350"
+        mc:Ignorable="d">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <ItemsControl ItemsSource="{Binding Coll}">
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type model:ModelA}">
+                    <Grid>
+                        <Ellipse Width="50"
+                                 Height="50"
+                                 Fill="Red" />
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Title}" />
+                    </Grid>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type model:ModelB}">
+                    <Grid>
+                        <Rectangle Width="50"
+                                   Height="50"
+                                   Fill="Coral" />
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Title}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.Resources>
+        </ItemsControl>
+    </Grid>
+</Window>

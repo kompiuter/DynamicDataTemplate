@@ -1,0 +1,43 @@
+﻿<Page x:Class="DynamicDataTemplate_UWP.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:DynamicDataTemplate_UWP"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:model="using:DynamicDataTemplate_UWP.Models"
+      mc:Ignorable="d">
+
+    <Page.DataContext>
+        <local:MainViewModel />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <DataTemplate x:Key="ModelADT">
+            <Grid>
+                <Ellipse Width="50"
+                         Height="50"
+                         Fill="Red" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="{Binding Title}" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="ModelBDT">
+            <Grid>
+                <Rectangle Width="50"
+                           Height="50"
+                           Fill="Coral" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="{Binding Title}" />
+            </Grid>
+        </DataTemplate>
+        <local:DynamicDataTemplateSelector x:Key="DynamicDataTemplateSelector"
+                                           ModelATemplate="{StaticResource ModelADT}"
+                                           ModelBTemplate="{StaticResource ModelBDT}" />
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ItemsControl ItemTemplateSelector="{StaticResource DynamicDataTemplateSelector}" ItemsSource="{Binding Coll}" />
+    </Grid>
+</Page>
